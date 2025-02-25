@@ -1,0 +1,26 @@
+<script>
+document.addEventListener('click', function(event){
+    var packageBtn = event.target.closest('.inner > p > a');
+
+    if (packageBtn){
+    var parentElement = packageBtn.closest('.col-md-6');
+		var packageNameElement = parentElement.querySelector('.inner > h4');
+		var packageName = packageNameElement.innerText.trim();
+
+		var packagePriceElement = parentElement.querySelector('.inner > h3 > strong');
+		var packagePriceString = packagePriceElement.innerText.trim();
+		var packagePrice = parseInt(packagePriceString.replace('£',''));
+
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			event: "package_clicked",
+			package_name: packageName,
+			package_price: packagePrice,
+			currency: "GBP"
+		});
+
+		console.log('Package Name: ', packageName);
+		console.log('Package Price: ', packagePrice);
+    }
+});
+</script>
